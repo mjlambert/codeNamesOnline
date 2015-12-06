@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en" data-ng-app="codeNamesOnline">
+
+  <head>
+    <base href="/">
+    <title>Australian Gaming League</title>
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="libs/bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="libs/components-font-awesome/css/font-awesome.min.css">
+
+    <!-- JS libs -->
+    <script src="libs/jquery/dist/jquery.min.js"></script>
+    <script src="libs/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="libs/angular/angular.min.js"></script>
+    <script src="libs/angular-route/angular-route.min.js"></script>
+    <script src="libs/angular-resource/angular-resource.min.js"></script>
+    <script src="libs/angular-bootstrap/ui-bootstrap-tpls.min.js"></script>
+    <script src="libs/validate/validate.min.js"></script>
+
+    <!-- Angular Config -->
+    <script src="javascript/app.js"></script>
+
+    <!-- Services -->
+
+    <!-- Controllers -->
+    <script src="javascript/controllers/appControllers.js"></script>
+    <script src="javascript/controllers/homePageControllers.js"></script>
+
+  </head>
+
+  <body data-ng-controller="appController">
+
+    <div data-ng-view></div>
+
+  </body>
+
+</html>
