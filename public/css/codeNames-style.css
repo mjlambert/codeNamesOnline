@@ -1,0 +1,26 @@
+.code-names-title {
+	color: #333333;
+	font-family: 'Droid Sans', sans-serif;
+	font-weight: bold;
+	text-align: center;
+	font-size: -webkit-xxx-large;
+}
+
+.code-names-button {
+	font-family: 'Lato', sans-serif;
+}
+
+.code-names-form {
+	padding: 10px;
+    margin-left: 25%;
+    margin-right: 25%;
+	text-align: center;
+}
+
+.code-names-input {
+	text-transform: uppercase
+}
+
+.lazy-margin {
+	margin: 20px;
+}

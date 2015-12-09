@@ -1,1 +1,16 @@
-<h1>Code Names Online</h1>
+<div>
+	<h1 class="code-names-title">Code Names Online</h1>
+</div>
+<div class="code-names-form">
+	<div class="alert alert-danger" data-ng-show="isError">
+		<strong>Error!</strong> {{errorMessage}}
+	</div>
+</div>
+<div class="code-names-form">
+	<input type="text" class="form-control lazy-margin code-names-input" placeholder="Enter Game Code" maxlength="4" data-ng-model="gameCode"/>
+	<button type="button" class="btn btn-primary btn-lg code-names-button lazy-margin" data-ng-click="joinGame()">Join Game</button>
+</div>
+<hr/>
+<div class="code-names-form">
+	<button type="button" class="btn btn-success btn-lg code-names-button lazy-margin" data-ng-click="createNewGame()">Create New Game</button>
+</div>
