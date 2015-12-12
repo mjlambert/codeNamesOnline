@@ -3,20 +3,33 @@
 
 // TODO Doco
 
-var appController = angular.module('homePageControllers', ['ui.bootstrap']);
+var appController = angular.module('homePageControllers', ['siteNavigationService', 'codeNamesAPIService']);
 
-appController.controller('homePageController', ['$scope',
-    function($scope) {
+appController.controller('homePageController', ['$scope', 'siteNavigation', 'codeNamesAPI',
+    function($scope, siteNavigation, codeNamesAPI) {
 
 		$scope.isError = false;
-		$scope.errorMessage = "Unknown Error";
+		$scope.errorMessage = '';
 
 		$scope.gameCode = '';
 
 		$scope.joinGame = function () {
 		};
 
+		$scope.dismissError = function () {
+			$scope.isError = false;
+		};
+
 		$scope.createNewGame = function () {
+			codeNamesAPI.createNewGame(function (error, gameCode) {
+				if (error) {
+					$scope.isError = true;
+					$scope.errorMessage = error
+				}
+				else {
+					siteNavigation.loadGamePage(gameCode);
+				}
+			});
 		};
 
     }]);

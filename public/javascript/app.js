@@ -3,7 +3,7 @@
 
 // TODO Doco
 
-var app = angular.module('codeNamesOnline', ['ngRoute', 'appControllers', 'homePageControllers']);
+var app = angular.module('codeNamesOnline', ['ngRoute', 'appControllers', 'homePageControllers', 'gamePageControllers', 'playerPageControllers']);
 
 app.config(['$routeProvider', '$locationProvider', function($routeProvider, $locationProvider) {
 
@@ -12,6 +12,14 @@ app.config(['$routeProvider', '$locationProvider', function($routeProvider, $loc
             templateUrl : '/views/home.html',
             controller  : 'homePageController',
         })
+		.when('/games/:gameCode', {
+			templateUrl : '/views/game.html',
+			controller  : 'gamePageController'
+		})
+		.when('/games/:gameCode/player', {
+			templateUrl : '/views/player.html',
+			controller  : 'playerPageController'
+		})
         .otherwise({
             redirectTo  : '/',
         });
