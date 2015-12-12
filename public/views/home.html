@@ -3,6 +3,9 @@
 </div>
 <div class="code-names-form">
 	<div class="alert alert-danger" data-ng-show="isError">
+		<button type="button" class="close" data-ng-click="dismissError()">
+			<span aria-hidden="true">&times;</span>
+		</button>
 		<strong>Error!</strong> {{errorMessage}}
 	</div>
 </div>
