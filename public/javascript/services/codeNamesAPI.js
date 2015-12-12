@@ -12,7 +12,24 @@ codeNamesAPI.factory('codeNamesAPI', ['$http', function ($http) {
 				url    : '/api/createNewGame'
 			}).then(function successCallback(response) {
 				if (response.data.success) {
-					return callback(null, response.data.data.gameCode);
+					return callback(null, response.data.data);
+				}
+				else {
+					return callback(response.data.error);
+				}
+			}, function errorCallback(response) {
+				// TODO maybe need to handle HTTP error codes here
+			});
+		},
+
+		getGameData : function (gameCode, callback) {
+			$http({
+				method : 'GET',
+				url    : '/api/game/:gameCode',
+				params : { gameCode : gameCode}
+			}).then(function successCallback(response) {
+				if (response.data.success) {
+					return callback(null, response.data.data);
 				}
 				else {
 					return callback(response.data.error);
