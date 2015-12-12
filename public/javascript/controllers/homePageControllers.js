@@ -5,7 +5,7 @@
 
 var appController = angular.module('homePageControllers', ['siteNavigationService', 'codeNamesAPIService']);
 
-appController.controller('homePageController', ['$scope', , 'siteNavigation', 'codeNamesAPI',
+appController.controller('homePageController', ['$scope', 'siteNavigation', 'codeNamesAPI',
     function($scope, siteNavigation, codeNamesAPI) {
 
 		$scope.isError = false;
