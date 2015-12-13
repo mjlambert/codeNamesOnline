@@ -2,17 +2,18 @@
 	<div class="setup-body">
 		<div class="setup-column">
 			<h1>Red Team</h1>
-			<div class="player-card">
-				<span>{{redCodeMasterName}}</span>
+			<div class="player-card red-team" data-ng-show="redCodeMasterConnected">
+				<span>Code Master {{redCodeMasterName}}</span>
 			</div>
 		</div>
 		<div class="setup-column">
 			<h2>Join Game at {{serverIP}}</h2>
+			<h2>Game Code <span class="label label-primary">{{gameCode}}</span></h2>
 		</div>
 		<div class="setup-column">
 			<h1>Blue Team</h1>
-			<div class="player-card">
-				<span>{{blueCodeMasterName}}</span>
+			<div class="player-card blue-team" data-ng-show="blueCodeMasterConnected">
+				<span>Code Master {{blueCodeMasterName}}</span>
 			</div>
 		</div>
 	</div>

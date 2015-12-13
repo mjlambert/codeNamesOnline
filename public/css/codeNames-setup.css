@@ -21,11 +21,25 @@
 
 .setup-column {
 	flex-grow: 1;
+	padding: 10px;
 }
 
 .player-card {
 	width: 100%;
 	height: 25px;
+    border-radius: 5px;
+    color: white;
+	font-family: 'Droid Sans', sans-serif;
+	font-weight: bold;
+	text-align: center;
+}
+
+.player-card.blue-team {
+	background-color: #47BBFF;
+}
+
+.player-card.red-team {
+	background-color: #FF4C4C;
 }
 
 .setup-footer {
