@@ -25,8 +25,7 @@ codeNamesAPI.factory('codeNamesAPI', ['$http', function ($http) {
 		getGameData : function (gameCode, callback) {
 			$http({
 				method : 'GET',
-				url    : '/api/game/:gameCode',
-				params : { gameCode : gameCode}
+				url    : '/api/game/' + gameCode 
 			}).then(function successCallback(response) {
 				if (response.data.success) {
 					return callback(null, response.data.data);
