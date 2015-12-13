@@ -1,5 +1,62 @@
 <h1>Game</h1>
 
-<div ng-repeat="row in rows">
-	<div ng-repeat="tile in row">{{tile.word}}</div>
+<style>
+.grid-wrapper{
+		position: absolute;
+		left: 50px;
+		margin: auto;
+    width: 53%;
+    padding: 10px;
+}
+
+.square {
+    float:left;
+    position: relative;
+    width: 15%;
+    padding-bottom : 15%; 
+    margin:1%;
+    background-color:#1E1E1E;
+    overflow:hidden;
+}
+
+.content {
+    position:absolute;
+    height:90%; 
+    width:90%; 
+    padding: 5%; 
+}
+
+.table{
+    display:table;
+    width:100%;
+    height:100%;
+}
+
+.table-cell{
+    display:table-cell;
+    vertical-align:middle;
+}
+
+.table-cell h1 {
+    font-size:150%;
+    font-family: 'Lato',verdana, sans-serif;
+    color: #fff;
+    text-align:center;
+		text-transform: uppercase;
+    font-weight: 900;
+}
+</style>
+
+<div class="grid-wrapper">
+	<div ng-repeat="row in rows">
+		<div class="square" ng-repeat="tile in row">
+			<div class="content">
+				<div class="table">
+					<div class="table-cell">
+						<h1>{{tile.word}}</h1>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
 </div>
