@@ -3,8 +3,8 @@
 
 var gamePageControllers = angular.module('gamePageControllers', ['ui.bootstrap', 'siteNavigationService', 'codeNamesAPIService']);
 
-gamePageControllers.controller('gamePageController', ['$scope', '$uibModal', 'siteNavigation', 'codeNamesAPI',
-	function ($scope, $uibModal, siteNavigation, codeNamesAPI) {
+gamePageControllers.controller('gamePageController', ['$scope', '$uibModal', 'siteNavigation', 'codeNamesAPI', '$routeParams',
+	function ($scope, $uibModal, siteNavigation, codeNamesAPI, $routeParams) {
 
 		// Start by opening the setup
 		OpenSetupModal();
@@ -20,6 +20,17 @@ gamePageControllers.controller('gamePageController', ['$scope', '$uibModal', 'si
 			}, function ModalClosed () {
 			});
 		}
+		
+		var gameCode = $routeParams.gameCode;
+		
+		codeNamesAPI.getGameData(gameCode, function(error, gameData){
+			if (error) {
+				console.log('buts :' + error);
+			} else { 
+				console.log(gameData);
+				$scope.rows = gameData.wordGrid;
+			}
+		});
 
 	}]);
 
