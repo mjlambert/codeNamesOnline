@@ -15,6 +15,7 @@ gamePageControllers.controller('gamePageController', ['$scope', '$uibModal', 'si
 				controller  : 'setupController',
 				backdrop    : 'static',
 				keyboard    : false,
+				windowClass : 'full-screen-modal'
 			});
 			modalInstance.result.then(function ModalFinished () {
 			}, function ModalClosed () {
@@ -26,10 +27,14 @@ gamePageControllers.controller('gamePageController', ['$scope', '$uibModal', 'si
 gamePageControllers.controller('setupController', ['$scope', '$uibModalInstance',
 	function ($scope, $uibModalInstance) {
 
+		$scope.serverIP = '192.168.1.14';
+
 		$scope.startGame = function () {
 			$uibModalInstance.close();
 		};
 
+		$scope.redCodeMasterName = 'RED MAN';
+		$scope.blueCodeMasterName = 'BLUE MAN';
 
 		// Close modal if user navigates away from page
 		$scope.$on('$routeChangeStart', function () {

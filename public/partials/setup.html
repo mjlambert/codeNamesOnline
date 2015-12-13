@@ -1,6 +1,23 @@
-<div>
-	<h1>Game Setup</h1>
-	<div>
-		<button type="button" class="btn btn-primary" data-ng-click="startGame()">Start Game</button>
+<div class="setup-container">
+	<div class="setup-body">
+		<div class="setup-column">
+			<h1>Red Team</h1>
+			<div class="player-card">
+				<span>{{redCodeMasterName}}</span>
+			</div>
+		</div>
+		<div class="setup-column">
+			<h2>Join Game at {{serverIP}}</h2>
+		</div>
+		<div class="setup-column">
+			<h1>Blue Team</h1>
+			<div class="player-card">
+				<span>{{blueCodeMasterName}}</span>
+			</div>
+		</div>
+	</div>
+	<hr/>
+	<div class="setup-footer">
+		<button type="button" class="btn btn-primary code-names-button" data-ng-click="startGame()">Start Game</button>
 	</div>
 </div>
