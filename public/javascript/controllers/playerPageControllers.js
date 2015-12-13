@@ -6,6 +6,7 @@ var playerPageControllers = angular.module('playerPageControllers', ['ui.bootstr
 playerPageControllers.controller('playerPageController', ['$scope', '$uibModal', 'siteNavigation',
 	function ($scope, $uibModal, siteNavigation) {
 
+
 	}]);
 
 })();

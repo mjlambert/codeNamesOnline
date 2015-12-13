@@ -7,11 +7,28 @@ var gamePageControllers = angular.module('gamePageControllers', ['ui.bootstrap',
 gamePageControllers.controller('gamePageController', ['$scope', '$uibModal', 'siteNavigation', 'codeNamesAPI', '$routeParams',
 	function ($scope, $uibModal, siteNavigation, codeNamesAPI, $routeParams) {
 
+		var gameCode = $routeParams.gameCode;
+		
 		// Start by opening the setup
 		OpenSetupModal();
 
 		// Tell the server which socket we are
-		socket.emit('addGameSocket');
+		socket.emit('addGameSocket', gameCode);
+
+		// Get Game data
+		codeNamesAPI.getGameData(gameCode, function(error, gameData){
+			if (error) {
+				console.log('buts :' + error);
+			} else { 
+				$scope.gameData = gameData;
+				$scope.rows = gameData.wordGrid;
+			}
+		});
+
+		// Update game data
+		socket.on('updateGameData', function(gameData) {
+			$scope.gameData = gameData;
+		});
 
 		function OpenSetupModal () {
 			var modalInstance = $uibModal.open({
@@ -26,17 +43,6 @@ gamePageControllers.controller('gamePageController', ['$scope', '$uibModal', 'si
 			});
 		}
 		
-		var gameCode = $routeParams.gameCode;
-		
-		codeNamesAPI.getGameData(gameCode, function(error, gameData){
-			if (error) {
-				console.log('buts :' + error);
-			} else { 
-				console.log(gameData);
-				$scope.rows = gameData.wordGrid;
-			}
-		});
-
 	}]);
 
 gamePageControllers.controller('setupController', ['$scope', '$uibModalInstance', '$routeParams',
@@ -62,6 +68,7 @@ gamePageControllers.controller('setupController', ['$scope', '$uibModalInstance'
 				$scope.redCodeMasterName = player.name;
 				$scope.redCodeMasterConnected = true;
 			}
+			$scope.$apply();
 		});
 
 		$scope.startGame = function () {

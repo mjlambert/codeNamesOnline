@@ -24,3 +24,15 @@
 .lazy-margin {
 	margin: 20px;
 }
+
+.team-toggle {
+	color: white;
+}
+
+.team-toggle.blue-team {
+	background-color: #00A1FF;
+}
+
+.team-toggle.red-team {
+	background-color: #FD4343;
+}
