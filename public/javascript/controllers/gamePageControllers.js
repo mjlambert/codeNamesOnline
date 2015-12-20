@@ -17,15 +17,42 @@ gamePageControllers.controller('gamePageController', ['$scope', '$uibModal', 'si
 				console.log('buts :' + error);
 			} else { 
 				$scope.gameData = gameData;
-				$scope.rows = gameData.wordGrid;
 			}
 		});
 
 		// Update game data
 		socket.on('updateGameData', function(gameData) {
-			$scope.gameData = gameData;
+			$scope.gameData = angular.copy(gameData);
 			$scope.$apply();
 		});
+
+		$scope.selectTile = function (tile) {
+			codeNamesAPI.selectWord(gameCode, tile.word, function (error) {
+				if (error) {
+					console.log('ERROR: ' + error);
+				}
+			});
+		};
+
+		$scope.getTileClass = function (tile) {
+			if (tile.chosen) {
+				switch (tile.type) {
+					case 'Blue Team':
+						return 'blueTeam';
+					case 'Red Team':
+						return 'redTeam';
+					case 'No Team':
+						return 'noTeam';
+					case 'Kill Word':
+						return 'killWord';
+					default:
+						return 'default';
+				};
+			}
+			else {
+				return 'default';
+			}
+		};
 
 		function OpenSetupModal () {
 			var modalInstance = $uibModal.open({

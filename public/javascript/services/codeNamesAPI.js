@@ -54,6 +54,23 @@ codeNamesAPI.factory('codeNamesAPI', ['$http', function ($http) {
 			}, function errorCallback (response) {
 				// TODO maybe need to handle HTTP error codes here
 			});
+		},
+
+		selectWord : function (gameCode, word, callback) {
+			$http({
+				method : 'PUT',
+				url    : '/api/game/' + gameCode + '/selectWord',
+				params : { word : word }
+			}).then(function successCallback (response) {
+				if (response.data.success) {
+					return callback();
+				}
+				else {
+					return callback(response.data.error);
+				}
+			}, function errorCallback (response) {
+				// TODO maybe need to handle HTTP error codes here
+			});
 		}
 
 	};

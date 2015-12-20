@@ -15,8 +15,27 @@
     width: 15%;
     padding-bottom : 15%; 
     margin:1%;
-    background-color:#1E1E1E;
     overflow:hidden;
+}
+
+.square.default {
+    background-color:#1E1E1E;
+}
+
+.square.blueTeam {
+    background-color:#1694D0;
+}
+
+.square.redTeam {
+    background-color:#D01616;
+}
+
+.square.noTeam {
+    background-color:#F1F1F1;
+}
+
+.square.killWord {
+    background-color:#000000;
 }
 
 .content {
@@ -45,11 +64,17 @@
 		text-transform: uppercase;
     font-weight: 900;
 }
+
+#game-info {
+	float: right;
+	padding: 20px;
+}
+
 </style>
 
 <div class="grid-wrapper">
-	<div ng-repeat="row in rows">
-		<div class="square" ng-repeat="tile in row">
+	<div ng-repeat="row in gameData.wordGrid">
+		<div class="square" ng-repeat="tile in row" ng-click="selectTile(tile)" ng-class="getTileClass(tile)">
 			<div class="content">
 				<div class="table">
 					<div class="table-cell">
@@ -59,4 +84,16 @@
 			</div>
 		</div>
 	</div>
+</div>
+
+<div id="game-info">
+	<h1>{{gameData.turn}} team's turn</h1>
+	<h1>Blue Team Words Left: {{gameData.blueTeamWordsLeft}}</h1>
+	<ul>
+		<li ng-repeat="word in gameData.blueTeamChosenWords">{{word}}</li>
+	</ul>
+	<h1>Red Team Words Left: {{gameData.redTeamWordsLeft}}</h1>
+	<ul>
+		<li ng-repeat="word in gameData.redTeamChosenWords">{{word}}</li>
+	</ul>
 </div>
