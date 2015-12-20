@@ -6,10 +6,11 @@ var codeNamesAPI = angular.module('codeNamesAPIService', []);
 codeNamesAPI.factory('codeNamesAPI', ['$http', function ($http) {
 	return {
 
-		createNewGame : function (callback) {
+		createNewGame : function (socketId, callback) {
 			$http({
 				method : 'POST',
-				url    : '/api/createNewGame'
+				url    : '/api/createNewGame',
+				params : { socketId : socketId }
 			}).then(function successCallback (response) {
 				if (response.data.success) {
 					return callback(null, response.data.data);
@@ -38,11 +39,11 @@ codeNamesAPI.factory('codeNamesAPI', ['$http', function ($http) {
 			});
 		},
 
-		addPlayer : function (gameCode, playerData, callback) {
+		addPlayer : function (gameCode, playerData, socketId, callback) {
 			$http({
 				method : 'POST',
 				url    : '/api/game/' + gameCode + '/addPlayer',
-				params : { playerData : playerData }
+				params : { playerData : playerData, socketId : socketId }
 			}).then(function successCallback (response) {
 				if (response.data.success) {
 					return callback();

@@ -1,7 +1,6 @@
-(function(){
+(function(socket){
 'use strict';
 
-var socket = io();
 var gamePageControllers = angular.module('gamePageControllers', ['ui.bootstrap', 'siteNavigationService', 'codeNamesAPIService']);
 
 gamePageControllers.controller('gamePageController', ['$scope', '$uibModal', 'siteNavigation', 'codeNamesAPI', '$routeParams',
@@ -11,9 +10,6 @@ gamePageControllers.controller('gamePageController', ['$scope', '$uibModal', 'si
 		
 		// Start by opening the setup
 		OpenSetupModal();
-
-		// Tell the server which socket we are
-		socket.emit('addGameSocket', gameCode);
 
 		// Get Game data
 		codeNamesAPI.getGameData(gameCode, function(error, gameData){
@@ -28,6 +24,7 @@ gamePageControllers.controller('gamePageController', ['$scope', '$uibModal', 'si
 		// Update game data
 		socket.on('updateGameData', function(gameData) {
 			$scope.gameData = gameData;
+			$scope.$apply();
 		});
 
 		function OpenSetupModal () {
@@ -82,4 +79,4 @@ gamePageControllers.controller('setupController', ['$scope', '$uibModalInstance'
 
 	}]);
 
-})();
+})(socket);

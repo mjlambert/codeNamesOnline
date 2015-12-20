@@ -1,4 +1,4 @@
-(function(){
+(function(socket){
 'use strict';
 
 // TODO Doco
@@ -19,7 +19,8 @@ appController.controller('homePageController', ['$scope', 'siteNavigation', 'cod
 			codeNamesAPI.addPlayer($scope.gameCode.toUpperCase(), {
 				name : $scope.codeMasterName.toUpperCase(),
 				team : $scope.team
-			}, function (error) {
+			}, socket.id,
+			function (error) {
 				if (error) {
 					$scope.isError = true;
 					$scope.errorMessage = error;
@@ -54,7 +55,7 @@ appController.controller('homePageController', ['$scope', 'siteNavigation', 'cod
 		};
 
 		$scope.createNewGame = function () {
-			codeNamesAPI.createNewGame(function (error, gameCode) {
+			codeNamesAPI.createNewGame(socket.id, function (error, gameCode) {
 				if (error) {
 					$scope.isError = true;
 					$scope.errorMessage = error
@@ -71,4 +72,4 @@ appController.controller('homePageController', ['$scope', 'siteNavigation', 'cod
     }]);
 
 
-})();
+})(socket);
