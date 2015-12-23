@@ -7,20 +7,22 @@ playerPageControllers.controller('playerPageController', ['$scope', '$uibModal',
 	function ($scope, $uibModal, siteNavigation, $routeParams, codeNamesAPI) {
 
 		var gameCode = $routeParams.gameCode;
-		var team = $routeParams.team;
+		$scope.team = $routeParams.team;
 		
 		// Get Game data
-		codeNamesAPI.getGameData(gameCode, function(error, gameData){
+		codeNamesAPI.getGameData(gameCode, function (error, gameData) {
 			if (error) {
 				console.log('ERROR:' + error);
 			} else { 
 				$scope.gameData = gameData;
+				$scope.turnIndicator = $scope.gameData.turn === 'blue' ? 'Blue Teams Turn' : 'Red Teams Turn';
 			}
 		});
 
 		// Update game data
-		socket.on('updateGameData', function(gameData) {
+		socket.on('updateGameData', function (gameData) {
 			$scope.gameData = angular.copy(gameData);
+			$scope.turnIndicator = $scope.gameData.turn === 'blue' ? 'Blue Teams Turn' : 'Red Teams Turn';
 			$scope.$apply();
 		});
 
@@ -42,7 +44,10 @@ playerPageControllers.controller('playerPageController', ['$scope', '$uibModal',
 			};
 		};
 
-		$scope.OpenWordSelectionModal = function (word) {
+		$scope.OpenWordSelectionModal = function (word, chosen) {
+			if ($scope.gameData.turn !== $scope.team || chosen) {
+				return;
+			}
 			var modalInstance = $uibModal.open({
 				templateUrl : '/partials/wordSelection.html',
 				controller  : 'wordSelectionController',
@@ -50,6 +55,17 @@ playerPageControllers.controller('playerPageController', ['$scope', '$uibModal',
 				resolve     : {
 					gameCode : function () { return gameCode; },
 					word     : function () { return word; }
+				}
+			});
+		};
+
+		$scope.nextTurn = function () {
+			if ($scope.gameData.turn !== $scope.team) {
+				return;
+			}
+			codeNamesAPI.nextTurn(gameCode, function (error) {
+				if (error) {
+					console.log('ERROR: ' + error);
 				}
 			});
 		};

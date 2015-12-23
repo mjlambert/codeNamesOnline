@@ -27,6 +27,9 @@ gamePageControllers.controller('gamePageController', ['$scope', '$uibModal', 'si
 		});
 
 		$scope.selectTile = function (tile) {
+			if (tile.chosen) {
+				return;
+			}
 			codeNamesAPI.selectWord(gameCode, tile.word, function (error) {
 				if (error) {
 					console.log('ERROR: ' + error);
@@ -91,6 +94,9 @@ gamePageControllers.controller('setupController', ['$scope', '$uibModalInstance'
 			else {
 				$scope.redCodeMasterName = player.name;
 				$scope.redCodeMasterConnected = true;
+			}
+			if (readyToStartGame()) {
+				$scope.startGame();
 			}
 			$scope.$apply();
 		});

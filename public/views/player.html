@@ -1,10 +1,19 @@
 <link rel="stylesheet" href="css/grid.css">
 
-<h1>Player Page</h1>
+<h1>Player Page ({{team}})</h1>
 
 <div class="grid-wrapper">
 	<div ng-repeat="row in gameData.wordGrid">
-		<div class="square" ng-repeat="tile in row" ng-click="OpenWordSelectionModal(tile.word)" ng-class="getTileClass(tile)">
+		<div class="square" ng-repeat="tile in row" ng-click="OpenWordSelectionModal(tile.word, tile.chosen)" ng-class="getTileClass(tile)">
 		</div>
+	</div>
+</div>
+
+<div id="player-info">
+	<div>
+		<h2>{{turnIndicator}}</h2>
+	</div>
+	<div>
+		<button type="button" class="btn btn-primary btn-lg btn-block code-names-button" data-ng-click="nextTurn()">Finish Turn</button>
 	</div>
 </div>
