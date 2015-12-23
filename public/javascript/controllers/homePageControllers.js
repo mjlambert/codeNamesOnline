@@ -26,7 +26,8 @@ appController.controller('homePageController', ['$scope', 'siteNavigation', 'cod
 					$scope.errorMessage = error;
 				}
 				else {
-					siteNavigation.loadPlayerPage($scope.gameCode)
+					var teamShort = $scope.team === 'Blue Team' ? 'blue' : 'red';
+					siteNavigation.loadPlayerPage($scope.gameCode.toUpperCase(), teamShort)
 				}
 			});
 

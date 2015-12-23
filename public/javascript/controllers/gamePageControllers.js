@@ -14,7 +14,7 @@ gamePageControllers.controller('gamePageController', ['$scope', '$uibModal', 'si
 		// Get Game data
 		codeNamesAPI.getGameData(gameCode, function(error, gameData){
 			if (error) {
-				console.log('buts :' + error);
+				console.log('ERROR:' + error);
 			} else { 
 				$scope.gameData = gameData;
 			}

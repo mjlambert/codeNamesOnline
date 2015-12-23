@@ -1,1 +1,10 @@
+<link rel="stylesheet" href="css/grid.css">
+
 <h1>Player Page</h1>
+
+<div class="grid-wrapper">
+	<div ng-repeat="row in gameData.wordGrid">
+		<div class="square" ng-repeat="tile in row" ng-click="OpenWordSelectionModal(tile.word)" ng-class="getTileClass(tile)">
+		</div>
+	</div>
+</div>

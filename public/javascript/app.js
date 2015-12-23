@@ -16,7 +16,7 @@ app.config(['$routeProvider', '$locationProvider', function($routeProvider, $loc
 			templateUrl : '/views/game.html',
 			controller  : 'gamePageController'
 		})
-		.when('/games/:gameCode/player', {
+		.when('/games/:gameCode/:team', {
 			templateUrl : '/views/player.html',
 			controller  : 'playerPageController'
 		})

@@ -14,8 +14,8 @@ siteNavigationService.factory('siteNavigation', ['$location', function ($locatio
 			$location.path('/games/' + gameCode);
 		},
 
-		loadPlayerPage : function (gameCode) {
-			$location.path('/games/' + gameCode + '/player');
+		loadPlayerPage : function (gameCode, team) {
+			$location.path('/games/' + gameCode + '/' + team);
 		}
 
 	};
