@@ -8,6 +8,17 @@ playerPageControllers.controller('playerPageController', ['$scope', '$uibModal',
 
 		var gameCode = $routeParams.gameCode;
 		$scope.team = $routeParams.team;
+
+		// Add player again in case this is a page refresh
+		codeNamesAPI.addPlayer(gameCode.toUpperCase(), {
+			name : 'Mr Refresh',
+			team : $scope.team === 'blue' ? 'Blue Team' : 'Red Team'
+		}, socket.id,
+		function (error) {
+			if (error) {
+				console.log('ERROR: ' + error);
+			}
+		});
 		
 		// Get Game data
 		codeNamesAPI.getGameData(gameCode, function (error, gameData) {
