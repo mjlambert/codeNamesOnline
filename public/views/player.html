@@ -11,9 +11,12 @@
 
 <div id="player-info">
 	<div>
-		<h2>{{turnIndicator}}</h2>
+		<h2>{{gameData.gameStatus}}</h2>
 	</div>
-	<div>
+	<div data-ng-hide="gameData.gameEnd">
 		<button type="button" class="btn btn-primary btn-lg btn-block code-names-button" data-ng-click="nextTurn()">Finish Turn</button>
+	</div>
+	<div data-ng-show="gameData.gameEnd">
+		<button type="button" class="btn btn-primary btn-lg btn-block code-names-button" data-ng-click="newGame()">New Game</button>
 	</div>
 </div>

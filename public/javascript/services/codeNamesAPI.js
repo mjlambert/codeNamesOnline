@@ -73,10 +73,26 @@ codeNamesAPI.factory('codeNamesAPI', ['$http', function ($http) {
 			});
 		},
 
-		nextTurn : function (gameCode) {
+		nextTurn : function (gameCode, callback) {
 			$http({
 				method : 'POST',
 				url    : '/api/game/' + gameCode + '/nextTurn',
+			}).then(function successCallback (response) {
+				if (response.data.success) {
+					return callback();
+				}
+				else {
+					return callback(response.data.error);
+				}
+			}, function errorCallback (response) {
+				// TODO maybe need to handle HTTP error codes here
+			});
+		},
+
+		resetGame : function (gameCode, callback) {
+			$http({
+				method : 'POST',
+				url    : '/api/game/' + gameCode + '/resetGame',
 			}).then(function successCallback (response) {
 				if (response.data.success) {
 					return callback();

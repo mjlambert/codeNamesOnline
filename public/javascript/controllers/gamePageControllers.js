@@ -27,7 +27,7 @@ gamePageControllers.controller('gamePageController', ['$scope', '$uibModal', 'si
 		});
 
 		$scope.selectTile = function (tile) {
-			if (tile.chosen) {
+			if (tile.chosen || $scope.gameData.gameEnd) {
 				return;
 			}
 			codeNamesAPI.selectWord(gameCode, tile.word, function (error) {
