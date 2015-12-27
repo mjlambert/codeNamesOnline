@@ -1,8 +1,14 @@
-.grid-wrapper{
-		position: absolute;
-		left: 50px;
-		margin: auto;
+.grid-wrapper {
+	position: absolute;
+	left: 50px;
+	margin: auto;
     width: 53%;
+    padding: 10px;
+}
+
+.grid-wrapper-player {
+	margin: auto;
+    width: 100%;
     padding: 10px;
 }
 
@@ -70,4 +76,14 @@
 #player-info {
 	float: right;
 	padding: 20px;
+	width: 100%;
+    text-align: center;
+}
+
+#player-info > div > h2 {
+	font-size: 8vw;
+}
+
+#player-info > div > button {
+	font-size: 8vw;
 }
