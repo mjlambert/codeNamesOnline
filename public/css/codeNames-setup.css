@@ -26,12 +26,13 @@
 
 .player-card {
 	width: 100%;
-	height: 25px;
     border-radius: 5px;
     color: white;
 	font-family: 'Droid Sans', sans-serif;
 	font-weight: bold;
 	text-align: center;
+	padding: 10px;
+	font-size: xx-large;
 }
 
 .player-card.blue-team {
@@ -43,5 +44,20 @@
 }
 
 .setup-footer {
+	text-align: center;
+}
+
+#game-code-container {
+	background-color: #337ab7;
+	border-radius: 5px;
+	padding: 10px;
+	margin-left: 40px;
+	margin-right: 40px;
+}
+
+.game-code-label {
+	font-size: 5vw;	
+	font-family: 'Droid Sans', sans-serif;
+    color: white;
 	text-align: center;
 }
