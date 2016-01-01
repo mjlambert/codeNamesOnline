@@ -1,7 +1,7 @@
 .grid-wrapper{
-		position: absolute;
-		left: 50px;
-		margin: auto;
+	position: absolute;
+	left: 50px;
+	margin: auto;
     width: 53%;
     padding: 10px;
 }
@@ -24,21 +24,21 @@
 }
 
 .square.redTeam {
-    background-color:#D01616;
+    background-color:#5cb85c;
 }
 
 .square.noTeam {
-    background-color:#F1F1F1;
+    background-color:#828282;
 }
 
 .square.killWord {
-    background-color:#F5A81C;
+    background-color:#FD4343;
 }
 
 .content {
     position:absolute;
     height:90%; 
-    width:90%; 
+    width:100%; 
     padding: 5%; 
 }
 
@@ -54,20 +54,16 @@
 }
 
 .table-cell h1 {
-    font-size:150%;
+    font-size:105%;
     font-family: 'Lato',verdana, sans-serif;
     color: #fff;
     text-align:center;
-		text-transform: uppercase;
+	text-transform: uppercase;
     font-weight: 900;
 }
 
 #game-info {
-	float: right;
-	padding: 20px;
-}
-
-#player-info {
-	float: right;
+	position: absolute;
+	right: 500px;
 	padding: 20px;
 }
