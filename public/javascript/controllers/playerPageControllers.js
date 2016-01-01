@@ -8,6 +8,17 @@ playerPageControllers.controller('playerPageController', ['$scope', '$uibModal',
 
 		var gameCode = $routeParams.gameCode;
 		$scope.team = $routeParams.team;
+
+		// Add player again in case this is a page refresh
+		codeNamesAPI.addPlayer(gameCode.toUpperCase(), {
+			name : 'Mr Refresh',
+			team : $scope.team === 'blue' ? 'Blue Team' : 'Red Team'
+		}, socket.id,
+		function (error) {
+			if (error) {
+				console.log('ERROR: ' + error);
+			}
+		});
 		
 		// Get Game data
 		codeNamesAPI.getGameData(gameCode, function (error, gameData) {
@@ -15,14 +26,12 @@ playerPageControllers.controller('playerPageController', ['$scope', '$uibModal',
 				console.log('ERROR:' + error);
 			} else { 
 				$scope.gameData = gameData;
-				$scope.turnIndicator = $scope.gameData.turn === 'blue' ? 'Blue Teams Turn' : 'Red Teams Turn';
 			}
 		});
 
 		// Update game data
 		socket.on('updateGameData', function (gameData) {
 			$scope.gameData = angular.copy(gameData);
-			$scope.turnIndicator = $scope.gameData.turn === 'blue' ? 'Blue Teams Turn' : 'Red Teams Turn';
 			$scope.$apply();
 		});
 
@@ -45,7 +54,7 @@ playerPageControllers.controller('playerPageController', ['$scope', '$uibModal',
 		};
 
 		$scope.OpenWordSelectionModal = function (word, chosen) {
-			if ($scope.gameData.turn !== $scope.team || chosen) {
+			if ($scope.gameData.turn !== $scope.team || chosen || $scope.gameData.gameEnd) {
 				return;
 			}
 			var modalInstance = $uibModal.open({
@@ -60,10 +69,18 @@ playerPageControllers.controller('playerPageController', ['$scope', '$uibModal',
 		};
 
 		$scope.nextTurn = function () {
-			if ($scope.gameData.turn !== $scope.team) {
+			if ($scope.gameData.turn !== $scope.team || $scope.gameData.gameEnd) {
 				return;
 			}
 			codeNamesAPI.nextTurn(gameCode, function (error) {
+				if (error) {
+					console.log('ERROR: ' + error);
+				}
+			});
+		};
+
+		$scope.newGame = function () {
+			codeNamesAPI.resetGame(gameCode, function (error) {
 				if (error) {
 					console.log('ERROR: ' + error);
 				}
